@@ -1,0 +1,25 @@
+{
+  "name": "cards",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_PATH=src node src/index.js",
+    "dev": "cross-env NODE_PATH=src nodemon",
+    "serve": "nodemon app.js"
+  },
+  "author": "Chris Stack",
+  "license": "MIT",
+  "dependencies": {
+    "@koa/cors": "^3.1.0",
+    "koa": "^2.13.0",
+    "koa-body": "^4.2.0",
+    "koa-router": "^9.1.0",
+    "pg": "^8.3.0",
+    "postgres": "^1.0.2",
+    "sequelize": "^6.3.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4",
+    "sequelize-cli": "^6.2.0"
+  }
+}
