@@ -1,6 +1,8 @@
 @import 'variables';
+@import 'mixins';
 @import 'container';
+@import 'utilities';
 
-body {
-  font-family: $font-body;
-}
+@import 'header-footer';
+@import 'base';
+@import 'page';
