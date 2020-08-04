@@ -4,7 +4,9 @@ body {
 #app {
   height: 100vh;
   font-family: $font-body;
+  font-size: $fz-main;
   color: $color-main;
+  background-color: #f7f7f7;
 }
 
 .heading,
@@ -24,6 +26,7 @@ body {
   margin: 0 0 30px;
 }
 .title {
+  display: flex;
   color: $color-1;
   font-weight: normal;
   margin-bottom: 0;
@@ -38,6 +41,7 @@ body {
 }
 
 a {
+  display: inline-block;
   text-decoration: none;
   color: $color-1;
   &:hover {
@@ -48,7 +52,7 @@ a {
 .btn {
   background-color: $color-1;
   color: #fff;
-  font-weight: bold;
+  // font-weight: bold;
   margin-top: 20px;
   padding: 14px 30px;
   border: $bd-w solid $color-1;
@@ -70,7 +74,7 @@ a {
     }
   }
   &.sm {
-    padding: 4px 18px;
+    padding: 6px 14px;
   }
 }
 
@@ -97,7 +101,7 @@ ul {
 }
 input {
   font-family: $font-body;
-  font-size: 16px;
+  font-size: $fz-main;
   height: auto;
   padding: 8px;
   border: $bd-w solid $gray-20;
@@ -112,6 +116,41 @@ input[type="submit"] {
   height: 41px;
   line-height: 0;
   text-transform: unset;
+}
+
+.logo {
+  .icons-wrap {
+    @include flex-grid(2, 0px);
+    width: ($logo-icon-size + $logo-icon-spacing) * 2;
+    height: ($logo-icon-size + $logo-icon-spacing) * 2;
+  }
+  .icon-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: $logo-icon-size + $logo-icon-spacing;
+    height: $logo-icon-size + $logo-icon-spacing;
+  }
+  .icon {
+    display: flex;
+    width: $logo-icon-size;
+    height: $logo-icon-size;
+    fill: $color-1;
+  }
+  .icon-heart {
+    width: $logo-icon-size - 1;
+    height: $logo-icon-size - 1;
+  }
+  .icon-diamonds {
+    position: relative;
+    top: 1px;
+    width: $logo-icon-size + 2;
+    height: $logo-icon-size + 2;
+  }
+}
+
+.hide {
+  display: none !important;
 }
 
 .tac {

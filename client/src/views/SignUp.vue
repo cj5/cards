@@ -1,28 +1,30 @@
 <template>
   <div id="register">
     <div class="container">
-      <h2 class="subheading tac">Register</h2>
+      <h2 class="subheading tac">Sign up</h2>
 
       <div class="form-wrap">
-        <form action="/" method="post" ref="form" @submit="submit">
+        <!-- <form method="post" ref="form" @submit="signUp"> -->
+        <div class="form">
           <div class="input-wrap">
-            <label for="username">Username:</label>
+            <label for="username">Username</label>
             <input type="text" id="username" name="username" v-model="username">
           </div>
           <div class="input-wrap">
-            <label for="password">Password:</label>
+            <label for="password">Password</label>
             <input type="password" id="password" name="password" v-model="password">
           </div>
           <!-- <div class="input-wrap">
-            <label for="confirm-password">Confirm Password:</label>
+            <label for="confirm-password">Confirm Password</label>
             <input type="password" id="confirm-password" name="confirm-password">
           </div> -->
           <div class="input-wrap">
-            <label for="email">Email:</label>
+            <label for="email">Email</label>
             <input type="text" id="email" name="email" v-model="email">
           </div>
-          <input class="btn" type="submit" value="Register">
-        </form>
+          <input @click="signUp" class="btn" type="submit" value="Sign up">
+        </div>
+        <!-- </form> -->
       </div>
 
     </div>
@@ -32,9 +34,10 @@
 <script>
 import axios from 'axios'
 import moment from 'moment-timezone'
+import AuthenticationService from '../services/AuthenticationService'
 
 export default {
-  name: 'Register',
+  name: 'SignUp',
   data() {
     return {
       serverUrl: this.$store.state.serverUrl,
@@ -45,25 +48,37 @@ export default {
     }
   },
   methods: {
-    submit(e) {
-      e.preventDefault()
-
+    async signUp() {
       this.now = moment.tz('America/Chicago').format('YYYY-MM-DD hh:mm:ss')
 
-      axios.post(`${this.serverUrl}/api/user`, {
+      const response = await AuthenticationService.signUp({
         username: this.username,
         password: this.password,
         email: this.email,
         created_on: this.now,
         last_login: this.now,
       })
-      .then(response => {
-        console.log(response)
-      })
-      .catch(err => {
-        console.log(err)
-      })
+      console.log(response.data)
     },
+    // submit(e) {
+    //   e.preventDefault()
+
+    //   this.now = moment.tz('America/Chicago').format('YYYY-MM-DD hh:mm:ss')
+
+    //   axios.post(`${this.serverUrl}/api/user`, {
+    //     username: this.username,
+    //     password: this.password,
+    //     email: this.email,
+    //     created_on: this.now,
+    //     last_login: this.now,
+    //   })
+    //   .then(response => {
+    //     console.log(response)
+    //   })
+    //   .catch(err => {
+    //     console.log(err)
+    //   })
+    // },
     getUsers() {
       axios.get(`${this.serverUrl}/api/users`)
         .then(res => {
@@ -75,7 +90,7 @@ export default {
     }
   },
   mounted() {
-    this.getUsers()
+    // this.getUsers()
   }
 }
 </script>

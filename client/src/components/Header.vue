@@ -2,15 +2,18 @@
   <header>
     <div class="container">
       <h1 class="heading title">
-        <router-link to="/" exact>Cards</router-link>
+        <router-link to="/" exact>
+          <Logo />
+          <span>Cards</span>
+        </router-link>
       </h1>
       <nav>
         <ul>
           <li>
-            <router-link to="/register" class="btn btn-2 sm" role="button">Register</router-link>
+            <router-link to="/log-in" class="btn btn-2 sm" role="button">Log in</router-link>
           </li>
           <li class="m-sm">
-            <router-link to="/sign-in" class="btn sm" role="button">Sign in</router-link>
+            <router-link to="/sign-up" class="btn sm" role="button">Sign up</router-link>
           </li>
         </ul>
       </nav>
@@ -19,7 +22,12 @@
 </template>
 
 <script>
+import Logo from './Logo'
+
 export default {
-  name: 'Header'
+  name: 'Header',
+  components: {
+    Logo
+  }
 }
 </script>

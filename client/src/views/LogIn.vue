@@ -1,19 +1,19 @@
 <template>
   <div id="sign-in">
     <div class="container">
-      <h2 class="subheading tac">Sign in</h2>
+      <h2 class="subheading tac">Log in</h2>
 
       <div class="form-wrap">
         <form action="/" method="post" ref="form" @submit="submit">
           <div class="input-wrap">
-            <label for="username">Username:</label>
+            <label for="username">Username</label>
             <input type="text" id="username" name="username" v-model="username">
           </div>
           <div class="input-wrap">
-            <label for="password">Password:</label>
+            <label for="password">Password</label>
             <input type="password" id="password" name="password" v-model="password">
           </div>
-          <input class="btn" type="submit" value="Sign in">
+          <input class="btn" type="submit" value="Log in">
         </form>
       </div>
 
@@ -26,7 +26,7 @@ import axios from 'axios'
 import moment from 'moment-timezone'
 
 export default {
-  name: 'SignIn',
+  name: 'LogIn',
   data() {
     return {
       serverUrl: this.$store.state.serverUrl,
