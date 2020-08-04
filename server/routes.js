@@ -1,6 +1,6 @@
 const Router = require('koa-router')
 const router = new Router()
-const User = require('../models/User')
+const User = require('./models/User')
 
 router.get('/api/users', async ctx => {
   await User.findAll()
@@ -24,6 +24,11 @@ router.post('/api/user', async ctx => {
         ctx.body = err
       })
   }
+})
+
+router.post('/api/sign-up', ctx => {
+  const body = ctx.request.body
+  ctx.body = `Username: ${body.username} | Password: ${body.password} | Email: ${body.email} | Created: ${body.created_on}`
 })
 
 module.exports = router
