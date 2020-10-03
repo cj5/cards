@@ -4,7 +4,6 @@
       <h2 class="subheading tac">Sign up</h2>
 
       <div class="form-wrap">
-        <!-- <form method="post" ref="form" @submit="signUp"> -->
         <div class="form">
           <div class="input-wrap">
             <label for="username">Username</label>
@@ -22,9 +21,9 @@
             <label for="email">Email</label>
             <input type="text" id="email" name="email" v-model="email">
           </div>
-          <input @click="signUp" class="btn" type="submit" value="Sign up">
+          <div class="error" v-if="error" v-html="error"></div>
+          <a @click="signUp" class="btn submit" role="button">Sign up</a>
         </div>
-        <!-- </form> -->
       </div>
 
     </div>
@@ -41,24 +40,30 @@ export default {
   data() {
     return {
       serverUrl: this.$store.state.serverUrl,
-      email: '',
       username: '',
       password: '',
+      email: '',
       now: '',
+      error: '',
     }
   },
   methods: {
     async signUp() {
       this.now = moment.tz('America/Chicago').format('YYYY-MM-DD hh:mm:ss')
 
-      const response = await AuthenticationService.signUp({
-        username: this.username,
-        password: this.password,
-        email: this.email,
-        created_on: this.now,
-        last_login: this.now,
-      })
-      console.log(response.data)
+      try {
+        const response = await AuthenticationService.signUp({
+          username: this.username,
+          password: this.password,
+          email: this.email,
+          created_on: this.now,
+          last_login: this.now,
+        })
+        console.log(response.data)
+      } catch (error) {
+        console.log('ERROR:', error.response)
+        this.error = error.response.data
+      }
     },
     // submit(e) {
     //   e.preventDefault()

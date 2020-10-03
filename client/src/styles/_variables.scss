@@ -19,7 +19,9 @@ $font-heading: 'Signika', sans-serif;
 $DARKEN_PER: 8%;
 $color-main: $gray-80;
 $color-1: #00ab63;
-$color-1-hov: darken(#00ab63, $DARKEN_PER);
+// $color-1: #00874e; // WCAG AA compliant
+$color-1-hov: darken($color-1, $DARKEN_PER);
+$color-error: #ed4545;
 
 $fz-main: 14px;
 $header-h: 70px;

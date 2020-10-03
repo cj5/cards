@@ -13,7 +13,7 @@
             <label for="password">Password</label>
             <input type="password" id="password" name="password" v-model="password">
           </div>
-          <input class="btn" type="submit" value="Log in">
+          <a @click="logIn" class="btn submit" role="button">Log in</a>
         </form>
       </div>
 
@@ -37,6 +37,9 @@ export default {
     }
   },
   methods: {
+    logIn() {
+      console.log('logIn()')
+    },
     submit(e) {
       e.preventDefault()
 
