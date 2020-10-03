@@ -1,3 +1,16 @@
-/server/node_modules
-/server/public
-/client/node_modules
+# Node modules
+node_modules
+yarn.lock
+
+# Adonis directory for storing tmp files
+tmp
+
+# Environment variables, never commit this file
+.env
+
+# The development sqlite file
+database/*.sqlite
+
+# VSCode & Webstorm history directories
+.history
+.idea
