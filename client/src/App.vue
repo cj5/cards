@@ -1,23 +1,27 @@
 <template>
   <div id="app">
-    <Header />
-    <div class="page-wrap">
-      <router-view/>
-    </div>
+    <h1>Cards App</h1>
+    <p>Nest JS / Vue JS</p>
   </div>
 </template>
 
 <script>
-import Header from './components/Header'
 
 export default {
   name: 'App',
   components: {
-    Header
+
   }
 }
 </script>
 
-<style lang="scss">
-  @import './styles/app';
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
 </style>
