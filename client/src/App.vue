@@ -1,23 +1,34 @@
 <template>
   <div id="app">
-    <Header />
-    <div class="page-wrap">
-      <router-view/>
-    </div>
+    <h1>{{ message }}</h1>
   </div>
 </template>
 
 <script>
-import Header from './components/Header'
+import axios from 'axios';
 
 export default {
   name: 'App',
-  components: {
-    Header
-  }
-}
+  data() {
+    return {
+      message: 'Static test',
+    };
+  },
+  mounted() {
+    axios
+      .get('http://localhost:3000/api/users')
+      .then((res) => {
+        this.message = res.data;
+        console.log(res);
+      })
+      .catch((err) => {
+        this.message = err;
+        console.log(err);
+      });
+  },
+};
 </script>
 
-<style lang="scss">
-  @import './styles/app';
+<style lang='scss'>
+@import './styles/app';
 </style>

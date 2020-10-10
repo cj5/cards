@@ -1,34 +1,19 @@
 {
-  "name": "cards",
+  "name": "cards-server",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {
-    "serve": "nodemon src/app.js --exec \"yarn lint && node\"",
-    "lint": "eslint src/**/*.js",
-    "lint:fix": "eslint src/**/*.js  --fix"
-  },
+  "repository": "https://github.com/cj5/cards",
   "author": "Chris Stack",
   "license": "MIT",
+  "scripts": {
+    "serve": "nodemon app.js"
+  },
   "dependencies": {
-    "@koa/cors": "^3.1.0",
-    "joi": "^17.2.0",
-    "koa": "^2.13.0",
-    "koa-body": "^4.2.0",
-    "koa-joi-router": "^6.0.2",
-    "koa-morgan": "^1.0.1",
-    "koa-router": "^9.1.0",
-    "pg": "^8.3.0",
-    "pg-hstore": "^2.3.3",
-    "postgres": "^1.0.2",
-    "sequelize": "^6.3.4"
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
   },
   "devDependencies": {
-    "eslint": "^7.6.0",
-    "eslint-config-standard": "^14.1.1",
-    "eslint-plugin-import": "^2.22.0",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
+    "dotenv": "^8.2.0",
     "nodemon": "^2.0.4"
   }
 }
