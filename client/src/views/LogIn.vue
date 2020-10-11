@@ -13,7 +13,8 @@
             <label for="password">Password</label>
             <input type="password" id="password" name="password" v-model="password">
           </div>
-          <a @click="logIn" class="btn submit" role="button">Log in</a>
+          <div class="error" v-if="error" v-html="error"></div>
+          <button @click="logIn" @keydown.enter.prevent="logIn" class="btn submit" role="button">Log in</button>
         </div>
       </div>
 
@@ -31,6 +32,7 @@ export default {
       serverUrl: this.$store.state.serverUrl,
       username: '',
       password: '',
+      error: '',
     }
   },
   methods: {
@@ -41,8 +43,10 @@ export default {
           password: this.password,
         })
         console.log(request.data)
+        this.error = ''
       } catch (error) {
-        console.log(error.response)
+        console.log(error)
+        this.error = error
       }
     },
   },

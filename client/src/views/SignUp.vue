@@ -39,9 +39,9 @@ export default {
   data() {
     return {
       serverUrl: this.$store.state.serverUrl,
-      username: 'pickle',
-      password: '@FromClient5',
-      email: 'pickle@email.com',
+      username: '',
+      password: '',
+      email: '',
       now: '',
       error: '',
     }

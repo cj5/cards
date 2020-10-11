@@ -18,7 +18,6 @@ module.exports = {
     const { error } = Joi.validate(ctx.request.body, schema)
 
     if (error) {
-      console.log(error.details[0])
       switch (error.details[0].context.key) {
         case 'username':
           ctx.throw(400, 'Invalid username')
@@ -39,13 +38,9 @@ module.exports = {
           ctx.throw(400, 'Invalid sign up information')
       }
     } else {
-      console.log('NO ERROR IN AuthControllerPolicy')
-
       try {
-        console.log('1')
         await next(ctx)
       } catch (err) {
-        console.log('2')
         ctx.throw(err.code, err.message)
         // ctx.status = err.status || err.statusCode || 500
         // ctx.body = err.message

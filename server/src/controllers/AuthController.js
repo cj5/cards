@@ -4,7 +4,6 @@ module.exports = {
   async signUp (ctx) {
     try {
       const user = await User.create(ctx.request.body)
-      console.log('user:', user)
       ctx.body = user.toJSON()
     } catch (error) {
       ctx.status = error.status || error.statusCode || 500
