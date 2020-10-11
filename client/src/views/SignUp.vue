@@ -22,7 +22,7 @@
             <input type="text" id="email" name="email" v-model="email">
           </div>
           <div class="error" v-if="error" v-html="error"></div>
-          <a @click="signUp" class="btn submit" role="button">Sign up</a>
+          <button @click="signUp" @keydown.enter.prevent="signUp" class="btn submit" role="button">Sign up</button>
         </div>
       </div>
 
@@ -31,18 +31,17 @@
 </template>
 
 <script>
-import axios from 'axios'
 import moment from 'moment-timezone'
-import AuthenticationService from '../services/AuthenticationService'
+import AuthService from '../services/AuthService'
 
 export default {
   name: 'SignUp',
   data() {
     return {
       serverUrl: this.$store.state.serverUrl,
-      username: '',
-      password: '',
-      email: '',
+      username: 'pickle',
+      password: '@FromClient5',
+      email: 'pickle@email.com',
       now: '',
       error: '',
     }
@@ -52,7 +51,7 @@ export default {
       this.now = moment.tz('America/Chicago').format('YYYY-MM-DD hh:mm:ss')
 
       try {
-        const response = await AuthenticationService.signUp({
+        const response = await AuthService.signUp({
           username: this.username,
           password: this.password,
           email: this.email,
@@ -60,42 +59,12 @@ export default {
           last_login: this.now,
         })
         console.log(response.data)
+        this.$router.push('log-in').catch(()=>{})
       } catch (error) {
-        console.log('ERROR:', error.response)
+        console.log('CATCH block:', error.response)
         this.error = error.response.data
       }
     },
-    // submit(e) {
-    //   e.preventDefault()
-
-    //   this.now = moment.tz('America/Chicago').format('YYYY-MM-DD hh:mm:ss')
-
-    //   axios.post(`${this.serverUrl}/api/user`, {
-    //     username: this.username,
-    //     password: this.password,
-    //     email: this.email,
-    //     created_on: this.now,
-    //     last_login: this.now,
-    //   })
-    //   .then(response => {
-    //     console.log(response)
-    //   })
-    //   .catch(err => {
-    //     console.log(err)
-    //   })
-    // },
-    getUsers() {
-      axios.get(`${this.serverUrl}/api/users`)
-        .then(res => {
-          console.log(JSON.stringify(res.data, null, 2))
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    }
   },
-  mounted() {
-    // this.getUsers()
-  }
 }
 </script>

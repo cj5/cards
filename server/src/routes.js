@@ -1,12 +1,15 @@
 const Router = require('koa-router')
 const router = new Router()
 
-const AuthenticationController = require('./controllers/AuthenticationController')
-const AuthenticationControllerPolicy = require('./policies/AuthenticationControllerPolicy')
+const AuthController = require('./controllers/AuthController')
+const AuthControllerPolicy = require('./policies/AuthControllerPolicy')
 
-router.post('/api/sign-up',
-  AuthenticationControllerPolicy.signUp,
-  AuthenticationController.signUp
-)
+router.post('/api/sign-up', async ctx => {
+  await AuthControllerPolicy.signUp(ctx, AuthController.signUp)
+})
+
+router.get('/api/user/:id', async ctx => {
+  await AuthController.logIn(ctx)
+})
 
 module.exports = router

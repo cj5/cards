@@ -1,11 +1,12 @@
 const koaJoi = require('koa-joi-router')
 const Joi = koaJoi.Joi
+// const bcrypt = require('bcrypt')
 
 const pwMinLength = 10
 const pattern = `(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z0-9!@#$%^&*]{${pwMinLength},}`
 
 module.exports = {
-  signUp (ctx, next) {
+  async signUp (ctx, next) {
     const schema = {
       username: Joi.string(),
       password: Joi.string().regex(new RegExp(pattern)),
@@ -23,7 +24,7 @@ module.exports = {
           ctx.throw(400, 'Invalid username')
           break
         case 'password':
-          ctx.throw(400, `The password provided failed to match the following&nbsp;rules: <br>1. Must be at least ${pwMinLength} characters in length <br>2. Must contain at least 1 letter <br>3. Must include at least 1 number <br>4. Allowed and recommended to include symbols (!@#$%^&*)`)
+          ctx.throw(400, `Invalid password. Password must — <br>1. be at least ${pwMinLength} characters in length <br>2. contain at least 1 letter <br>3. include at least 1 number`)
           break
         case 'email':
           ctx.throw(400, 'You must provide a valid email address')
@@ -38,8 +39,17 @@ module.exports = {
           ctx.throw(400, 'Invalid sign up information')
       }
     } else {
-      console.log('WHAT IS UP!?')
-      next()
+      console.log('NO ERROR IN AuthControllerPolicy')
+
+      try {
+        console.log('1')
+        await next(ctx)
+      } catch (err) {
+        console.log('2')
+        ctx.throw(err.code, err.message)
+        // ctx.status = err.status || err.statusCode || 500
+        // ctx.body = err.message
+      }
     }
   }
 }

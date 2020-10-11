@@ -14,6 +14,11 @@ export default {
   name: 'App',
   components: {
     Header
+  },
+  watch: {
+    $route() {
+      this.$store.commit('setCurrentRoute', this.$route.name)
+    }
   }
 }
 </script>
