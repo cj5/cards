@@ -13,6 +13,8 @@ $gray-10: darken(#fff, 10%);
 $gray-5: darken(#fff, 5%);
 
 // APP SPECIFIC
+$mxw: 1400px;
+
 $font-body: 'Sora', sans-serif;
 $font-heading: 'Signika', sans-serif;
 
@@ -21,9 +23,10 @@ $color-main: $gray-80;
 $color-1: #00ab63;
 // $color-1: #00874e; // WCAG AA compliant
 $color-1-hov: darken($color-1, $DARKEN_PER);
-$color-error: #ed4545;
+$color-error: #cc1414;
+$color-error-bg: #fcdede;
 
-$fz-main: 14px;
+$fz-main: 16px;
 $header-h: 70px;
 $bd-w: 2px;
 $bd-r: 5px;

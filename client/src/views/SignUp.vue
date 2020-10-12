@@ -58,6 +58,10 @@ export default {
         })
         console.log(response.data)
         this.$router.push('log-in').catch(()=>{})
+        this.$store.commit('setModalShow', {
+          boolean: true,
+          copy: '<span class="tac">You have successfully signed up for the Cards App</span>'
+        })
       } catch (error) {
         console.log('CATCH block:', error.response)
         this.error = error.response.data

@@ -8,6 +8,8 @@
   }
   @media #{$mnw-md} {
     max-width: $vpw-md;
+    padding-right: 50px;
+    padding-left: 50px;
   }
   @media #{$mnw-lg} {
     max-width: $vpw-lg;

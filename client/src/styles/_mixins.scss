@@ -1,5 +1,5 @@
-@mixin transition {
-  transition: all 0.1s ease-in-out;
+@mixin transition($timing: 0.1s) {
+  transition: all $timing ease-in-out;
 }
 
 @mixin flex-grid($cols, $gutter: 0, $mt: $gutter) {

@@ -23,7 +23,8 @@
             </li>
           </ul>
         </nav>
-        <div v-if="signedIn" style="margin-left: 20px;">
+        <div v-if="signedIn" class="flex ml-3">
+          <span class="icon-user flex aic mr-1"></span>
           <p>{{ username }}</p>
         </div>
       </div>

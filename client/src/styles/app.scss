@@ -1,7 +1,13 @@
+@import 'fonts';
 @import 'variables';
 @import 'mixins';
 @import 'container';
 @import 'utilities';
+
+#app {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 @import 'header-footer';
 @import 'base';

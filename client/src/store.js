@@ -8,6 +8,8 @@ export default new Vuex.Store({
     currentRoute: '',
     signedIn: false,
     username: '',
+    modalShow: false,
+    modalCopy: '',
   },
   mutations: {
     setCurrentRoute(state, route) {
@@ -18,6 +20,10 @@ export default new Vuex.Store({
     },
     setUsername(state, username) {
       state.username = username
-    }
+    },
+    setModalShow(state, { boolean, copy = '' }) {
+      state.modalShow = boolean
+      state.modalCopy = copy
+    },
   }
 })
