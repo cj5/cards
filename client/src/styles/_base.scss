@@ -3,8 +3,6 @@ body {
   background-color: $gray-80;
 }
 #app {
-  max-width: $mxw;
-  margin: 0 auto;
   height: 100vh;
   font-family: $font-body;
   font-size: $fz-main;
@@ -23,9 +21,13 @@ body {
 .heading-2 {
   font-size: 30px;
 }
+.heading,
+.heading-2,
+.subheading {
+  font-weight: bold;
+}
 .subheading {
   font-size: 24px;
-  font-weight: normal;
   margin: 0 0 30px;
 }
 .title {

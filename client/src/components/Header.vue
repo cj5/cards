@@ -24,7 +24,7 @@
           </ul>
         </nav>
         <div v-if="signedIn" class="flex ml-3">
-          <span class="icon-user flex aic mr-1"></span>
+          <span class="icon-user flex aic"></span>
           <p>{{ username }}</p>
         </div>
       </div>

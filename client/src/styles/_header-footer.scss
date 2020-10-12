@@ -1,10 +1,8 @@
 header {
   position: fixed;
   width: 100%;
-  max-width: $mxw;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
   background-color: #fff;
   box-shadow: 0px -1px 10px rgba($gray-80, 0.4);
   .container {
@@ -40,5 +38,8 @@ header {
     .btn {
       margin: 0;
     }
+  }
+  .icon-user {
+    margin-right: 8px;
   }
 }

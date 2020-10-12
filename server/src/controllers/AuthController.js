@@ -33,7 +33,7 @@ module.exports = {
         ctx.request.body
       ])
     } catch (error) {
-      ctx.throw(400, 'username or password are incorrect')
+      ctx.throw(400, 'username or password is incorrect')
     }
   }
   // async logIn (ctx) {
