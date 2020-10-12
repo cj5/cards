@@ -26,7 +26,7 @@ module.exports = {
           ctx.throw(400, `Invalid password. Password must — <br>1. be at least ${pwMinLength} characters in length <br>2. contain at least 1 letter <br>3. include at least 1 number`)
           break
         case 'email':
-          ctx.throw(400, 'You must provide a valid email address')
+          ctx.throw(400, 'Invalid email address')
           break
         case 'created_on':
           ctx.throw(400, 'Error with created_on string')

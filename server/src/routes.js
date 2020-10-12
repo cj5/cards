@@ -8,6 +8,10 @@ router.post('/api/sign-up', async ctx => {
   await AuthControllerPolicy.signUp(ctx, AuthController.signUp)
 })
 
+router.post('/api/log-in', async ctx => {
+  await AuthController.logIn(ctx)
+})
+
 router.get('/api/user/:id', async ctx => {
   await AuthController.logIn(ctx)
 })

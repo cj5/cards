@@ -4,6 +4,7 @@ module.exports = {
   async signUp (ctx) {
     try {
       const user = await User.create(ctx.request.body)
+      console.log('\n\n', user.toJSON(), '\n\n')
       ctx.body = user.toJSON()
     } catch (error) {
       ctx.status = error.status || error.statusCode || 500
@@ -22,12 +23,29 @@ module.exports = {
   async logIn (ctx) {
     try {
       const user = await User.findOne({
-        where: { username: ctx.params.id }
+        where: {
+          username: ctx.request.body.username,
+          password: ctx.request.body.password
+        }
       })
-      ctx.body = user.toJSON()
+      console.log(ctx.body = [
+        user.toJSON(),
+        ctx.request.body
+      ])
     } catch (error) {
-      ctx.status = error.status || error.statusCode || 500
-      ctx.body = 'Error finding user. (AuthController.js)'
+      ctx.throw(400, 'username or password are incorrect')
     }
   }
+  // async logIn (ctx) {
+  //   try {
+  //     const user = await User.findOne({
+  //       where: { username: ctx.params.id }
+  //     })
+  //     console.log('\n\nuser:', user)
+  //     ctx.body = user.toJSON()
+  //   } catch (error) {
+  //     // ctx.status = error.status || error.statusCode || 500
+  //     ctx.body = 'No user found with this username'
+  //   }
+  // }
 }
