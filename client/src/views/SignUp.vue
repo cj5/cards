@@ -31,14 +31,12 @@
 </template>
 
 <script>
-import moment from 'moment-timezone'
 import AuthService from '../services/AuthService'
 
 export default {
   name: 'SignUp',
   data() {
     return {
-      serverUrl: this.$store.state.serverUrl,
       username: '',
       password: '',
       email: '',
@@ -48,13 +46,13 @@ export default {
   },
   methods: {
     async signUp() {
-      this.now = moment.tz('America/Chicago').format('YYYY-MM-DD hh:mm:ss')
+      this.now = this.$dayjs().format(process.env.VUE_APP_TIME_FORMAT)
 
       try {
         const response = await AuthService.signUp({
           username: this.username,
           password: this.password,
-          email: this.email,
+          email: this.email.toLowerCase(),
           created_on: this.now,
           last_login: this.now,
         })

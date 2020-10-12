@@ -1,3 +1,21 @@
+.color-1 { color: $color-1 !important; }
+
+.flex { display: flex; }
+.jcc { justify-content: center; }
+.aic { align-items: center; }
+
+.hide { display: none !important; }
+
+.tac { text-align: center !important; }
+
+.italic { font-style: italic; }
+
+.fz-xxl { font-size: 44px !important; }
+.fz-xl { font-size: 32px !important; }
+.fz-lg { font-size: 24px !important; }
+.fz-md { font-size: 18px !important; }
+.fz-sm { font-size: 14px !important; }
+
 @for $i from 0 through 10 {
   .m-#{$i} { margin: #{$i}0px !important; }
   .mt-#{$i} { margin-top: #{$i}0px !important; }

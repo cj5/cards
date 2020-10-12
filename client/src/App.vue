@@ -19,7 +19,7 @@ export default {
     $route() {
       this.$store.commit('setCurrentRoute', this.$route.name)
     }
-  }
+  },
 }
 </script>
 

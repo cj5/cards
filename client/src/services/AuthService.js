@@ -5,7 +5,9 @@ export default {
     return Api().post('/sign-up', creds)
   },
   logIn(creds) {
-    console.log('HEY FROM CLIENT:', creds.username)
-    return Api().get(`/user/${creds.username}`)
+    return Api().post('/log-in', creds)
   }
+  // logIn(creds) {
+  //   return Api().get(`/user/${creds.username}`)
+  // }
 }

@@ -1,15 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import config from '../vue.config'
-
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    serverUrl: config.devServer.proxy['/api'].target,
     currentRoute: '',
     signedIn: false,
+    username: '',
   },
   mutations: {
     setCurrentRoute(state, route) {
@@ -17,6 +15,9 @@ export default new Vuex.Store({
     },
     setSignedIn(state, boolean) {
       state.signedIn = boolean
+    },
+    setUsername(state, username) {
+      state.username = username
     }
   }
 })
