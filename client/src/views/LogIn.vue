@@ -37,6 +37,7 @@ export default {
   },
   methods: {
     async logIn() {
+      this.error = ''
       this.now = this.$dayjs().format(process.env.VUE_APP_TIME_FORMAT)
 
       try {
@@ -47,32 +48,15 @@ export default {
         })
         console.log('TRY block:', response.data)
         this.$store.commit('setSignedIn', true)
-        this.$store.commit('setUsername', response.data[0].username)
-        this.$router.push('/').catch(()=>{})
+        this.$store.commit('setUsername', response.data.username)
+        this.$router.push('/').catch(() => {})
       } catch (error) {
         console.log('CATCH block:', error.response)
-        this.error = error.response.data
+        setTimeout(() => {
+          this.error = error.response.data
+        }, 200)
       }
     },
-    // async logIn() {
-    //   try {
-    //     const request = await AuthService.logIn({
-    //       username: this.username,
-    //       password: this.password,
-    //     })
-    //     console.log('WUT?', request)
-    //     if (request.data.username === this.username) {
-    //       this.error = ''
-    //       console.log('USERNAME MATCHES, CHECK PSWD')
-    //     } else {
-    //       console.log('HELLO!?', request.data)
-    //       this.error = request.data
-    //     }
-    //   } catch (error) {
-    //     console.log('ERROR in catch block of LogIn.vue', error)
-    //     this.error = error
-    //   }
-    // },
   },
 }
 </script>

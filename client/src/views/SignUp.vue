@@ -46,6 +46,7 @@ export default {
   },
   methods: {
     async signUp() {
+      this.error = ''
       this.now = this.$dayjs().format(process.env.VUE_APP_TIME_FORMAT)
 
       try {
@@ -57,14 +58,16 @@ export default {
           last_login: this.now,
         })
         console.log(response.data)
-        this.$router.push('log-in').catch(()=>{})
+        this.$router.push('log-in').catch(() => {})
         this.$store.commit('setModalShow', {
           boolean: true,
           copy: '<span class="tac fz-md">You have successfully signed up for the Cards App</span>'
         })
       } catch (error) {
         console.log('CATCH block:', error.response)
-        this.error = error.response.data
+        setTimeout(() => {
+          this.error = error.response.data
+        }, 200)
       }
     },
   },

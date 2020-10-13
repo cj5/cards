@@ -1,11 +1,14 @@
 const { User } = require('../models')
+const bcrypt = require('bcrypt')
 
 module.exports = {
   async signUp (ctx) {
     try {
-      const user = await User.create(ctx.request.body)
-      console.log('\n\n', user.toJSON(), '\n\n')
-      ctx.body = user.toJSON()
+      const password = ctx.request.body.password
+      const hashedPassword = await bcrypt.hash(password, 12)
+      ctx.request.body.password = hashedPassword
+      await User.create(ctx.request.body)
+      ctx.status = 200
     } catch (error) {
       ctx.status = error.status || error.statusCode || 500
       switch (error.errors[0].message) {
@@ -22,30 +25,22 @@ module.exports = {
   },
   async logIn (ctx) {
     try {
+      const username = ctx.request.body.username
+      const password = ctx.request.body.password
+
       const user = await User.findOne({
-        where: {
-          username: ctx.request.body.username,
-          password: ctx.request.body.password
-        }
+        where: { username: username }
       })
-      console.log(ctx.body = [
-        user.toJSON(),
-        ctx.request.body
-      ])
+
+      const valid = await bcrypt.compare(password, user.password)
+
+      if (valid) {
+        ctx.body = { username: user.username }
+      } else {
+        ctx.throw(400)
+      }
     } catch (error) {
-      ctx.throw(400, 'username or password is incorrect')
+      ctx.throw(400, 'Invalid username or password')
     }
   }
-  // async logIn (ctx) {
-  //   try {
-  //     const user = await User.findOne({
-  //       where: { username: ctx.params.id }
-  //     })
-  //     console.log('\n\nuser:', user)
-  //     ctx.body = user.toJSON()
-  //   } catch (error) {
-  //     // ctx.status = error.status || error.statusCode || 500
-  //     ctx.body = 'No user found with this username'
-  //   }
-  // }
 }

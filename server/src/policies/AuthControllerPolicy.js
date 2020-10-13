@@ -1,6 +1,5 @@
 const koaJoi = require('koa-joi-router')
 const Joi = koaJoi.Joi
-// const bcrypt = require('bcrypt')
 
 const pwMinLength = 10
 const pattern = `(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z0-9!@#$%^&*]{${pwMinLength},}`
@@ -42,8 +41,6 @@ module.exports = {
         await next(ctx)
       } catch (err) {
         ctx.throw(err.code, err.message)
-        // ctx.status = err.status || err.statusCode || 500
-        // ctx.body = err.message
       }
     }
   }
