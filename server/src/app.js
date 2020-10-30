@@ -9,9 +9,12 @@ const config = require('./config')
 const router = require('./routes')
 
 app
+  .use(cors({
+    origin: 'http://localhost:8080',
+    credentials: true
+  }))
   .use(morgan('combined'))
   .use(bodyParser())
-  .use(cors())
   .use(router.allowedMethods())
   .use(router.routes())
 

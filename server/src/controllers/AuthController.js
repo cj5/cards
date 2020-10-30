@@ -1,5 +1,6 @@
 const { User } = require('../models')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 module.exports = {
   async signUp (ctx) {
@@ -24,6 +25,7 @@ module.exports = {
     }
   },
   async logIn (ctx) {
+    let errorMsg = ''
     try {
       const username = ctx.request.body.username
       const password = ctx.request.body.password
@@ -32,15 +34,34 @@ module.exports = {
         where: { username: username }
       })
 
-      const valid = await bcrypt.compare(password, user.password)
+      if (!user) errorMsg = 'No user with that username'
 
-      if (valid) {
+      const validPassword = await bcrypt.compare(password, user.password)
+
+      if (validPassword) {
+        console.log('VALID password')
         ctx.body = { username: user.username }
+        const accessToken = jwt.sign(
+          { id: user.user_id },
+          'SECRET',
+          { expiresIn: '15m' }
+        )
+        ctx.cookies.set(
+          'jid',
+          jwt.sign({ id: user.user_id }, 'lasjhdf897asdf', {
+            expiresIn: '7d'
+          }),
+          {
+            httpOnly: true
+          }
+        )
+        console.log('\n\naccessToken:', accessToken, '\n\n')
       } else {
+        errorMsg = 'Password is incorrect'
         ctx.throw(400)
       }
     } catch (error) {
-      ctx.throw(400, 'Invalid username or password')
+      ctx.throw(400, errorMsg)
     }
   }
 }
