@@ -1,5 +1,7 @@
 .color-1 { color: $color-1 !important; }
 
+.rel { position: relative; }
+
 .flex { display: flex; }
 .jcc { justify-content: center; }
 .aic { align-items: center; }
@@ -13,11 +15,11 @@
 
 .italic { font-style: italic; }
 
-.fz-xxl { font-size: 44px !important; }
-.fz-xl { font-size: 32px !important; }
-.fz-lg { font-size: 26px !important; }
-.fz-md { font-size: 20px !important; }
-.fz-sm { font-size: 16px !important; }
+.fz-xxl { font-size: $fz-xxl; }
+.fz-xl { font-size: $fz-xl; }
+.fz-lg { font-size: $fz-lg; }
+.fz-md { font-size: $fz-md; }
+.fz-sm { font-size: $fz-sm; }
 
 @for $i from 0 through 10 {
   .m-#{$i} { margin: #{$i}0px !important; }

@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import Blackjack from './games/blackjack'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -10,6 +12,7 @@ export default new Vuex.Store({
     username: '',
     modalShow: false,
     modalCopy: '',
+    modalBtnCopy: '',
   },
   mutations: {
     setCurrentRoute(state, route) {
@@ -21,9 +24,13 @@ export default new Vuex.Store({
     setUsername(state, username) {
       state.username = username
     },
-    setModalShow(state, { boolean, copy = '' }) {
+    setModalShow(state, { boolean, copy = '', btnCopy = '' }) {
       state.modalShow = boolean
       state.modalCopy = copy
+      state.modalBtnCopy = btnCopy
     },
+  },
+  modules: {
+    Blackjack,
   }
 })

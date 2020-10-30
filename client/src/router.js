@@ -19,6 +19,11 @@ const routes = [
     name: 'LogIn',
     component: () => import('./views/LogIn.vue')
   },
+  {
+    path: '/blackjack',
+    name: 'BlackJack',
+    component: () => import('./games/Blackjack.vue')
+  },
 ]
 
 const router = new VueRouter({

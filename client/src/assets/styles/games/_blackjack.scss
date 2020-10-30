@@ -1,0 +1,59 @@
+#blackjack {
+  .game-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #5fb372;
+    border: none;
+  }
+  .dealer,
+  .player {
+    display: flex;
+  }
+  .dealer {
+    margin-bottom: 100px;
+  }
+  .card {
+    position: relative;
+    width: 100px;
+    height: 150px;
+    background-color: #fff;
+    border-radius: $bd-r;
+    margin-right: 12px;
+    overflow: hidden;
+    @include box-shadow;
+    &:last-of-type {
+      margin-right: 0;
+    }
+    .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      object-fit: cover;
+      background-color: $color-1;
+      opacity: 0.4;
+      z-index: 9;
+    }
+  }
+  .card-value {
+    display: inline-block;
+    padding: 10px;
+    font-weight: bold;
+  }
+  .icon-wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .icon {
+    width: 30px;
+    height: 30px;
+    &.icon-spades,
+    &.icon-clubs { fill: #000; }
+    &.icon-heart,
+    &.icon-diamonds { fill: red; }
+  }
+}

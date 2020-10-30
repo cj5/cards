@@ -1,0 +1,71 @@
+.page-wrap {
+  padding-top: $header-h;
+}
+
+#sign-in,
+#register {
+  max-width: 400px;
+  margin: 80px auto 0;
+}
+
+.games {
+  .flex-grid {
+    @include flex-grid(3, 20px);
+    @media #{$mxw-lg} {
+      @include flex-grid(2, 20px);
+    }
+  }
+  .module {
+    position: relative;
+    border: 2px solid $color-bd;
+    border-radius: $bd-r-2;
+    overflow: hidden;
+    @include box-shadow;
+    &:hover {
+      box-shadow: none;
+      img {
+        transform: scale(1.015);
+      }
+      .title {
+        color: $color-main;
+      }
+      .filter {
+        background-color: rgba(#fff, 0);
+      }
+    }
+  }
+  .title {
+    margin: 0;
+    padding: 15px 20px;
+    font-size: $fz-md;
+    font-weight: bold;
+    background-color: #fff;
+    @include transition;
+  }
+  .img-wrap {
+    position: relative;
+    overflow: hidden;
+  }
+  img {
+    transform: scale(1);
+    @include transition;
+  }
+  .filter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(#fff, 0.15);
+    @include transition;
+  }
+}
+
+.game-wrap {
+  background-color: $gray-5;
+  border: 2px solid $color-bd;
+  border-radius: $bd-r-2;
+  margin-top: 50px;
+  padding: 50px;
+  @include box-shadow;
+}

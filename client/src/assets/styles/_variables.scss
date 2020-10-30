@@ -12,24 +12,11 @@ $gray-20: darken(#fff, 20%);
 $gray-10: darken(#fff, 10%);
 $gray-5: darken(#fff, 5%);
 
-// APP SPECIFIC
-$font-body: 'Sora', sans-serif;
-$font-heading: 'Signika', sans-serif;
-
-$DARKEN_PER: 8%;
-$color-main: $gray-80;
-$color-1: #00ab63;
-// $color-1: #00874e; // WCAG AA compliant
-$color-1-hov: darken($color-1, $DARKEN_PER);
-$color-error: #cc1414;
-$color-error-bg: #fcdede;
-
-$fz-main: 16px;
-$header-h: 60px;
-$bd-w: 2px;
-$bd-r: 5px;
-$logo-icon-size: 15px;
-$logo-icon-spacing: 2px;
+$fz-xxl: 44px !important;;
+$fz-xl: 32px !important;
+$fz-lg: 26px !important;
+$fz-md: 20px !important;
+$fz-sm: 16px !important;
 
 // BREAKPOINTS
 $vpw-xl: 1200px;
@@ -53,3 +40,27 @@ $mnw-sm: '(min-width: #{$vpw-sm})';
 $mnw-md: '(min-width: #{$vpw-md})';
 $mnw-lg: '(min-width: #{$vpw-lg})';
 $mnw-xl: '(min-width: #{$vpw-xl})';
+
+// APP SPECIFIC
+$font-body: 'Sora', sans-serif;
+$font-heading: 'Signika', sans-serif;
+
+$DARKEN_PER: 8%;
+$color-main: $gray-80;
+$color-gray: $gray-60;
+$color-bd: $gray-30;
+$color-1: #00ab63;
+// $color-1: #00874e; // WCAG AA compliant
+$color-1-hov: darken($color-1, $DARKEN_PER);
+$color-error: #cc1414;
+$color-error-bg: #fcdede;
+
+$fz-main: 16px;
+$header-h: 60px;
+$bd-w: 2px;
+$bd-r: 5px;
+$bd-r-2: 20px;
+$logo-icon-size: 15px;
+$logo-icon-spacing: 2px;
+
+$input-p: 8px;

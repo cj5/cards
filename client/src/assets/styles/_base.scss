@@ -35,20 +35,13 @@ body {
   color: $color-1;
   font-weight: normal;
   margin-bottom: 0;
-  transform: scale(1);
-  @include transition;
-  &:hover {
-    transform: scale(1.05);
-  }
-  a:hover {
-    text-decoration: none;
-  }
 }
 
 a {
   display: inline-block;
   text-decoration: none;
   color: $color-1;
+  @include transition;
   &:hover {
     text-decoration: none;
     cursor: pointer;
@@ -58,13 +51,17 @@ a {
   }
 }
 
+img {
+  max-width: 100%;
+}
+
 .btn {
   background-color: $color-1;
   color: #fff;
   font-size: $fz-main;
   font-weight: bold;
   margin-top: 20px;
-  padding: 14px 30px;
+  padding: 12px 36px;
   border: $bd-w solid $color-1;
   border-radius: $bd-r;
   cursor: pointer;
@@ -106,22 +103,40 @@ ul {
   flex-direction: column;
   width: 400px;
   margin-bottom: 20px;
+  * {
+    box-sizing: border-box;
+  }
   label {
-    color: $gray-60;
+    color: $color-gray;
     margin-bottom: 5px;
   }
 }
 input {
+  display: flex;
   font-family: $font-body;
   font-size: $fz-main;
+  width: 100%;
   height: auto;
-  padding: 8px;
-  border: $bd-w solid $gray-30;
+  padding: $input-p;
+  border: $bd-w solid $color-bd;
   border-radius: $bd-r;
   outline: none;
   &:focus {
     border-color: $color-1;
   }
+  &.password {
+    padding: $input-p 38px $input-p  $input-p;
+  }
+}
+.password-wrap {
+  position: relative;
+  display: flex;
+}
+.togglePassword {
+  position: absolute;
+  top: 54%;
+  right: 10px;
+  transform: translateY(-50%);
 }
 .submit {
   display: inline-block;
@@ -200,7 +215,7 @@ input {
 }
 
 .icon-user:before {
-  font-family: 'icons' !important;
+  font-family: 'icons';
   font-size: 22px;
   color: $color-1;
   content: '\e900';
@@ -215,4 +230,16 @@ input {
   font-size: 44px;
   width: 40px;
   height: 40px;
+}
+
+.icon-eye {
+  &:before {
+    font-family: 'icons';
+    font-size: 24px;
+    content: '\e901';
+    color: $color-gray;
+  }
+  &.active:before {
+    color: $color-1;
+  }
 }

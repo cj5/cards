@@ -1,7 +1,3 @@
-@mixin transition($timing: 0.1s) {
-  transition: all $timing ease-in-out;
-}
-
 @mixin flex-grid($cols, $gutter: 0, $mt: $gutter) {
   display: flex;
   flex-wrap: wrap;
@@ -22,4 +18,12 @@
       margin-right: 0;
     }
   }
+}
+
+@mixin transition($timing: 0.1s) {
+  transition: all $timing ease-in-out;
+}
+
+@mixin box-shadow($offset: 4px, $blur: 10px, $color: rgba(#000, 0.2)) {
+  box-shadow: $offset $offset $blur $color;
 }

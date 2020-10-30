@@ -5,11 +5,13 @@
   >
     <div class="modal-wrap">
       <div class="modal">
-        <a class="icon-close" @click="close">
+        <a class="icon-close" @click="close" @keydown.enter="close">
           <span>&times;</span>
         </a>
-        <!-- <slot></slot> -->
-        <p v-html="modalCopy"></p>
+        <div class="tac fz-md">
+          <p v-html="modalCopy"></p>
+          <button class="btn mt-2" @click="close" @keydown.enter="close">{{ modalBtnCopy }}</button>
+        </div>
       </div>
     </div>
   </div>
@@ -24,6 +26,9 @@
       },
       modalCopy() {
         return this.$store.state.modalCopy
+      },
+      modalBtnCopy() {
+        return this.$store.state.modalBtnCopy
       }
     },
     methods: {

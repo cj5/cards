@@ -7,7 +7,4 @@ export default {
   logIn(creds) {
     return Api().post('/log-in', creds)
   }
-  // logIn(creds) {
-  //   return Api().get(`/user/${creds.username}`)
-  // }
 }

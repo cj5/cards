@@ -21,6 +21,7 @@ export default {
   watch: {
     $route() {
       this.$store.commit('setCurrentRoute', this.$route.name)
+      // console.clear()
     }
   },
   methods: {
@@ -34,5 +35,5 @@ export default {
 </script>
 
 <style lang="scss">
-  @import './styles/app';
+  @import './assets/styles/app';
 </style>

@@ -4,7 +4,7 @@ header {
   top: 0;
   left: 0;
   background-color: #fff;
-  box-shadow: 0px -1px 10px rgba($gray-80, 0.4);
+  @include box-shadow(0px, 10px, rgba(#000, 0.2));
   .container {
     display: flex;
     justify-content: space-between;
@@ -13,6 +13,12 @@ header {
   }
   .title a {
     display: flex;
+    font-size: $fz-xl;
+    transform: scale(1);
+    @include transition;
+    &:hover {
+      transform: scale(1.05);
+    }
   }
   .logo {
     display: flex;

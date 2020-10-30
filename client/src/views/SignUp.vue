@@ -11,7 +11,16 @@
           </div>
           <div class="input-wrap">
             <label for="password">Password</label>
-            <input type="password" id="password" name="password" v-model="password">
+            <div class="flex rel">
+              <input :type="passwordType" id="password" name="password" class="password" v-model="password">
+              <a
+                ref="password"
+                class="togglePassword icon-eye"
+                @click="togglePassword"
+                @keydown.enter="togglePassword"
+                tabindex="0"
+              ></a>
+            </div>
           </div>
           <!-- <div class="input-wrap">
             <label for="confirm-password">Confirm Password</label>
@@ -42,6 +51,7 @@ export default {
       email: '',
       now: '',
       error: '',
+      passwordType: 'password',
     }
   },
   methods: {
@@ -61,13 +71,23 @@ export default {
         this.$router.push('log-in').catch(() => {})
         this.$store.commit('setModalShow', {
           boolean: true,
-          copy: '<span class="tac fz-md">You have successfully signed up for the Cards App</span>'
+          copy: 'You have successfully signed up for the Cards App',
+          btnCopy: 'Log in',
         })
       } catch (error) {
         console.log('CATCH block:', error.response)
         setTimeout(() => {
           this.error = error.response.data
         }, 200)
+      }
+    },
+    togglePassword() {
+      if (this.passwordType === 'password') {
+        this.passwordType = ''
+        this.$refs.password.classList.add('active')
+      } else {
+        this.passwordType = 'password'
+        this.$refs.password.classList.remove('active')
       }
     },
   },
