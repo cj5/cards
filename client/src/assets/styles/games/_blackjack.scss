@@ -3,20 +3,27 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
     background-color: #5fb372;
+    background-color: #6aa38b;
     border: none;
+    overflow: hidden;
   }
-  .dealer,
-  .player {
+  .hands {
     display: flex;
   }
-  .dealer {
-    margin-bottom: 100px;
+  .player {
+    display: flex;
+    margin-right: 40px;
+    &:last-of-type {
+      margin-right: 0;
+    }
   }
+  $card-w: 100px;
   .card {
     position: relative;
-    width: 100px;
-    height: 150px;
+    width: $card-w;
+    height: $card-w * 1.4;
     background-color: #fff;
     border-radius: $bd-r;
     margin-right: 12px;
@@ -39,7 +46,7 @@
   }
   .card-value {
     display: inline-block;
-    padding: 10px;
+    padding: 6px 0 0 8px;
     font-weight: bold;
   }
   .icon-wrap {
@@ -56,4 +63,47 @@
     &.icon-heart,
     &.icon-diamonds { fill: red; }
   }
+  .chips {
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 2px solid #fff;
+  }
+  .chips-wrap {
+    position: relative;
+    display: flex;
+    z-index: 999;
+  }
+  $chip-d: 70px;
+  .chip {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: $chip-d;
+    height: $chip-d;
+    border-radius: 50%;
+    font-weight: bold;
+    margin-right: 10px;
+    @include box-shadow(2px, 4px, rgba(#000, 0.5));
+    &:last-of-type {
+      margin-right: 0;
+    }
+    .value-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #fff;
+      border: 2px solid $gray-10;
+      border-radius: 50%;
+      color: $color-main;
+      padding: 5px;
+      width: 26px;
+      height: 26px;
+    }
+  }
+  .chip-1 { background-color: #fff; }
+  .chip-2 { background-color: #d6594b; }
+  .chip-3 { background-color: #4958ad; }
+  .chip-4 { background-color: #346953; }
+  .chip-5 { background-color: #ffa852; }
+  .chip-6 { background-color: $gray-80; }
 }

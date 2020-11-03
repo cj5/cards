@@ -1,33 +1,37 @@
 <template>
   <div id="blackjack" class="container">
     <div class="game-wrap">
-      <div class="dealer">
+      <div class="hands">
         <div
-          class="card"
-          v-for="(i, key) in this.$store.state.Blackjack.dealerHand"
-          :key="key"
+          class="player"
+          v-for="(i, key_i) in state.players"
+          :key="key_i"
         >
-          <div class="card-value">{{ cardValue(i) }}</div>
-          <div class="icon-wrap">
-            <svg :class="`icon icon-${cardSuit(i)}`">
-              <use :xlink:href="`#icon-${cardSuit(i)}`"></use>
-            </svg>
+          <div
+            class="card"
+            v-for="(j, key_j) in i.cards"
+            :key="key_j"
+          >
+            <div class="card-value">{{ cardValue(j) }}</div>
+            <div class="icon-wrap">
+              <svg :class="`icon icon-${cardSuit(j)}`">
+                <use :xlink:href="`#icon-${cardSuit(j)}`"></use>
+              </svg>
+            </div>
+            <!-- <img :src="img('card-back.png')" class="card-back" v-if="key_j === 0" /> -->
           </div>
-          <img :src="img('card-back.png')" class="card-back" v-if="key === 0" />
         </div>
       </div>
-      <div class="player">
-        <div
-          class="card"
-          v-for="(i, key) in this.$store.state.Blackjack.playerHand"
-          :key="key"
-        >
-          <div class="card-value">{{ cardValue(i) }}</div>
-          <div class="icon-wrap">
-            <svg :class="`icon icon-${cardSuit(i)}`">
-              <use :xlink:href="`#icon-${cardSuit(i)}`"></use>
-            </svg>
-          </div>
+      <div class="chips">
+        <div class="chips-wrap">
+          <a
+            :class="`chip chip-${key+1}`"
+            role="button"
+            v-for="(i, key) in state.chipValues"
+            :key="key"
+          >
+            <div class="value-wrap"><span>{{ i }}</span></div>
+          </a>
         </div>
       </div>
     </div>
@@ -37,6 +41,11 @@
 <script>
 export default {
   name: 'Blackjack',
+  computed: {
+    state() {
+      return this.$store.state.Blackjack
+    }
+  },
   methods: {
     cardValue(val) {
       let value = val.split('-')[1]
@@ -70,15 +79,8 @@ export default {
     },
   },
   mounted() {
-    this.$store.commit('Blackjack/shuffleCards')
+    this.$store.dispatch('Blackjack/initGame')
 
-    this.$store.state.Blackjack.dealCount++ // Burn the first card
-
-    this.$store.commit('Blackjack/updatePlayerHand')
-    this.$store.commit('Blackjack/updatePlayerHand')
-
-    this.$store.commit('Blackjack/updateDealerHand')
-    this.$store.commit('Blackjack/updateDealerHand')
   }
 }
 </script>
