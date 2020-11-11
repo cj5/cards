@@ -5,6 +5,7 @@
 .flex { display: flex; }
 .jcc { justify-content: center; }
 .aic { align-items: center; }
+.fdc { flex-direction: column; }
 
 .hide { display: none !important; }
 
@@ -12,6 +13,9 @@
   text-align: center !important;
   display: block !important;
 }
+
+.fwn { font-weight: normal !important; }
+.bold { font-weight: bold !important; }
 
 .italic { font-style: italic; }
 

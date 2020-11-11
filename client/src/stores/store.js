@@ -9,7 +9,7 @@ export default new Vuex.Store({
   state: {
     currentRoute: '',
     signedIn: false,
-    username: '',
+    username: 'Chris',
     modalShow: false,
     modalCopy: '',
     modalBtnCopy: '',
