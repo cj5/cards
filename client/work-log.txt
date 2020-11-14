@@ -1,0 +1,13 @@
+- Compare with dealer
+
+- Decide payout
+
+- Blackjack pays 3:2
+
+- Insurance
+
+- Splitting
+
+- Deal next round
+
+- Multi-player (Web sockets)

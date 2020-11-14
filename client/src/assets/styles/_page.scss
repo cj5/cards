@@ -64,8 +64,6 @@
 .game-wrap {
   background-color: $gray-5;
   border: 2px solid $color-bd;
-  border-radius: $bd-r-2;
-  margin-top: 50px;
   padding: $game-wrap-p;
   @include box-shadow;
 }

@@ -1,5 +1,5 @@
 import appStore from '../store'
-import { shuffle } from '../../utilities'
+import { shuffle, hit } from '../../utilities'
 
 export default {
   namespaced: true,
@@ -13,6 +13,8 @@ export default {
     playerTurn: 0,
     startingBank: 1000,
     chipValues: [1, 5, 10, 25, 50, 100],
+    handout: 5,
+    roundState: 'betting',
   }),
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -25,6 +27,7 @@ export default {
             cards: [],
             value: null,
             aces: 0,
+            bust: false,
           })
         } else {
           // Push player object for all previous indexes
@@ -35,6 +38,7 @@ export default {
             bet: null,
             bank: state.startingBank,
             aces: 0,
+            bust: false,
           })
         }
       }
@@ -52,29 +56,39 @@ export default {
       }
 
       state.cards = shuffle(cards)
-      // console.log(JSON.stringify(state.cards, null, 2))
     },
     deal(state) {
       for (let i = 0; i < 2; i++) {
         state.players.map(x => {
-          x.cards.push(state.cards[state.dealCount])
-          let value = parseInt(state.cards[state.dealCount].split('-')[1])
-          if (value >= 10) {
-            value = 10
-          }
-          if (value === 1) {
-            value = 11
-            x.aces++
-          }
-          x.value += value
-          state.dealCount++
+          hit(state, x)
         })
       }
-      // console.log(JSON.stringify(state.players, null, 2))
     },
     placeBet(state, val) {
       state.players[state.playerTurn].bank -= val
       state.players[state.playerTurn].bet = val
+    },
+    hit(state, isDealer = false) {
+      if (isDealer) {
+        hit(state, state.players[state.players.length - 1])
+      } else {
+        hit(state, state.players[state.playerTurn])
+      }
+    },
+    payout(state, { i, amount }) {
+      state.players[i].bank += amount
+    },
+    returnHands(state) {
+      state.players.map(x => {
+        x.cards = []
+        x.value = null
+        x.bet = null
+        x.aces = null
+        x.bust = false
+      })
+    },
+    bankHandout(state, i) {
+      state.players[i].bank = state.handout
     },
     updatePlayerTurn(state) {
       if (state.playerTurn === state.players.length - 2) {
@@ -83,14 +97,17 @@ export default {
         state.playerTurn++
       }
     },
+    setRoundState(state, str) {
+      state.roundState = str
+    },
   },
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   actions: {
-    initGame(ctx) {
-      ctx.commit('initPlayers')
-      ctx.commit('shuffleCards')
-      ctx.commit('deal')
+    initGame({ commit }) {
+      commit('initPlayers')
+      commit('shuffleCards')
+      commit('deal')
     }
   }
 }

@@ -24,6 +24,8 @@
 .fz-lg { font-size: $fz-lg; }
 .fz-md { font-size: $fz-md; }
 .fz-sm { font-size: $fz-sm; }
+.fz-xs { font-size: $fz-xs; }
+.fz-xxs { font-size: $fz-xxs; }
 
 @for $i from 0 through 10 {
   .m-#{$i} { margin: #{$i}0px !important; }

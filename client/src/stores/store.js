@@ -8,7 +8,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     currentRoute: '',
-    signedIn: false,
+    signedIn: true,
     username: 'Chris',
     modalShow: false,
     modalCopy: '',

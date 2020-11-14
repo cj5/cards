@@ -89,9 +89,11 @@ img {
       border-color: darken($gray-10, $DARKEN_PER);
     }
   }
-  &.sm {
-    padding: 6px 14px;
-  }
+  &.sm { padding: $btn-sm-p; }
+}
+.btn-sm-replace {
+  padding: $btn-sm-p;
+  border: $bd-w solid transparent;
 }
 
 ul {
