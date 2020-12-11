@@ -1,6 +1,6 @@
-- Compare with dealer
+X - Compare with dealer
 
-- Decide payout
+X - Decide payout
 
 - Blackjack pays 3:2
 
@@ -8,6 +8,10 @@
 
 - Splitting
 
-- Deal next round
+X - Deal next round
 
 - Multi-player (Web sockets)
+
+- handle negative score
+
+- Show if player won, lost, etc. below their hand
