@@ -17,8 +17,8 @@
   }
   .module {
     position: relative;
-    border: 2px solid $color-bd;
-    border-radius: $bd-r-2;
+    border: 1px solid $color-main;
+    // border-radius: $bd-r-2;
     overflow: hidden;
     @include box-shadow;
     &:hover {
